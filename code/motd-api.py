@@ -1,5 +1,4 @@
-# apt install python3-pip
-# pip install flask
+#!/usr/bin/env python3
 import sys
 from flask import Flask
 from flask import jsonify
