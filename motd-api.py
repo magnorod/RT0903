@@ -14,7 +14,7 @@ def hello_world():
         dico["message"]=str(sys.argv[2])
         return jsonify(dico)
     else: # message par défaut
-        return dico
+        return jsonify(dico)
     #endif
 
 if __name__=="__main__":
