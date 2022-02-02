@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motd-deployment-with-configmap
+  namespace: marc-boursetmarcellas
+  labels:
+    app: motd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: motd
+  template:
+    metadata:
+      labels:
+        app: motd
+    spec:
+      containers:
+      - name: motd
+        image: magnorod/motd-api-image
+        command: ["./motd-api.py"]
+        args: ["80", "$(MESSAGE)"]
+        env:
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: configmap-motd
+              key: message
+        ports:
+        - containerPort: 80

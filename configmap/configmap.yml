@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-motd
+  namespace: marc-boursetmarcellas
+data:
+  message_perso: "Do not eat the yellow snow"

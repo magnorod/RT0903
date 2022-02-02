@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motd-deployment
+  labels:
+    app: motd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: motd
+  template:
+    metadata:
+      labels:
+        app: motd
+    spec:
+      containers:
+      - name: motd
+        image: magnorod/motd-api-image
+        command: ["./motd-api.py"]
+        args: ["80", "serveur web dans mon pod"]
+        ports:
+        - containerPort: 80
