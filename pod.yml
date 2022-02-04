@@ -13,3 +13,6 @@ spec:
     args: ["80", "serveur web dans mon pod"]
     ports:
       - containerPort: 80
+    env:
+    - name: REDIS_URL
+      value: "10.44.1.236"

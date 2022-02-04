@@ -34,4 +34,36 @@ else
     echo "deployment mis à jour"
 fi
 
+kubectl delete deploy motd-deployment
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "deployment supprimé"
+fi
+
+kubectl apply -f deployment-motd.yml
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "deployment lancé"
+fi
+
+kubectl delete statefulset statefulset-redis
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "statefulset supprimé"
+fi
+
+kubectl apply -f statefulset.yml
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "statefulset lancé"
+fi
+
 exit 0
