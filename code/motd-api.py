@@ -9,13 +9,13 @@ from flask import Response
 app = Flask(__name__)
 
 dico = {"message": "Hello, world"}
-# REDIS_URL = os.getenv('REDIS_URL')
+REDIS_URL = os.getenv('REDIS_URL')
 
-# if REDIS_URL: # récupération de la valeur associée à la clé message
-#     r = redis.Redis(host=REDIS_URL)
-#     encoding = 'utf-8'
-#     dico["message"]=str(r.get("message"),encoding)
-# #endif
+if REDIS_URL: # récupération de la valeur associée à la clé message
+    r = redis.Redis(host=REDIS_URL)
+    encoding = 'utf-8'
+    dico["message"]=str(r.get("message"),encoding)
+#endif
     
 @app.route("/")
 def hello_world():

@@ -50,13 +50,13 @@ else
     echo "deployment lancé"
 fi
 
-kubectl delete statefulset statefulset-redis
-if [ $? -ne 0 ]
-then
-    exit 1
-else
-    echo "statefulset supprimé"
-fi
+# kubectl delete statefulset statefulset-redis
+# if [ $? -ne 0 ]
+# then
+#     exit 1
+# else
+#     echo "statefulset supprimé"
+# fi
 
 kubectl apply -f statefulset.yml
 if [ $? -ne 0 ]
