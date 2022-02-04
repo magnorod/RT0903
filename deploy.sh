@@ -33,3 +33,5 @@ then
 else
     echo "deployment mis à jour"
 fi
+
+exit 0
