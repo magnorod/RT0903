@@ -16,8 +16,11 @@ spec:
     spec:
       containers:
       - name: motd
-        image: magnorod/motd-api-image:93fcde5cdb6d8f05b962e6b097694620f55db956
+        image: magnorod/motd-api-image:2ddded380d8d24f3d40c66d7b0ded84d4f1bffdb
         command: ["./motd-api.py"]
         args: ["80", "serveur web dans mon pod"]
         ports:
         - containerPort: 80
+        env:
+          - name: REDIS_URL
+            value: "10.44.1.236"
