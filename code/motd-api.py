@@ -17,6 +17,7 @@ if REDIS_URL: # récupération de la valeur associée à la clé message
     dico["message"]=str(r.get("message"),encoding)
 #endif
     
+
 @app.route("/")
 def hello_world():
     if len(sys.argv) >= 3: # si un message est spécifié alors on l'utilise
@@ -25,7 +26,6 @@ def hello_world():
     else: # message par défaut
         return jsonify(dico)
     #endif
-#endef
 
 if __name__=="__main__":
     if len(sys.argv) >= 2: # si un port est spécifié alors

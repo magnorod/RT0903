@@ -34,6 +34,25 @@ else
     echo "deployment mis à jour"
 fi
 
+
+
+kubectl apply -f service.yml
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "my-service lance"
+fi
+
+
+kubectl apply -f service-redis.yml
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "service redis lance"
+fi
+
 kubectl delete deploy motd-deployment
 if [ $? -ne 0 ]
 then
@@ -50,13 +69,13 @@ else
     echo "deployment lancé"
 fi
 
-# kubectl delete statefulset statefulset-redis
-# if [ $? -ne 0 ]
-# then
-#     exit 1
-# else
-#     echo "statefulset supprimé"
-# fi
+kubectl delete statefulset statefulset-redis
+if [ $? -ne 0 ]
+then
+    exit 1
+else
+    echo "statefulset supprimé"
+fi
 
 kubectl apply -f statefulset.yml
 if [ $? -ne 0 ]
