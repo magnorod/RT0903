@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: motd
-        image: magnorod/motd-api-image:f281a33b0080ccb4d805d61ae3eb74dbe7022674
+        image: magnorod/motd-api-image:309f68437827a8307af88190f62a73979199f566
         command: ["./motd-api.py"]
         args: ["80", "serveur web dans mon pod"]
         ports:

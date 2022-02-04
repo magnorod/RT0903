@@ -11,21 +11,17 @@ app = Flask(__name__)
 dico = {"message": "Hello, world"}
 REDIS_URL = os.getenv('REDIS_URL')
 
-if REDIS_URL: # récupération de la valeur associée à la clé message
-    r = redis.Redis(host=REDIS_URL)
-    encoding = 'utf-8'
-    dico["message"]=str(r.get("message"),encoding)
-#endif
-    
-
 @app.route("/")
 def hello_world():
-    if len(sys.argv) >= 3: # si un message est spécifié alors on l'utilise
+    if REDIS_URL: # récupération de la valeur associée à la clé message
+        r = redis.Redis(host=REDIS_URL)
+        encoding = 'utf-8'
+        dico["message"]=str(r.get("message"),encoding)
+    elif len(sys.argv) >= 3: # si un message est spécifié alors on l'utilise
         dico["message"]=str(sys.argv[2])
-        return jsonify(dico)
-    else: # message par défaut
-        return jsonify(dico)
     #endif
+    return jsonify(dico)
+#endef
 
 if __name__=="__main__":
     if len(sys.argv) >= 2: # si un port est spécifié alors
